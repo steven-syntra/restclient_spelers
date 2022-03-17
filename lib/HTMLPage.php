@@ -6,6 +6,7 @@ class HTMLPage
 
     var $use_bootstrap = true;
     var $css_files = array();
+    var $js_files_head = array();
     var $js_files = array();
 
     var $output;
@@ -15,7 +16,11 @@ class HTMLPage
     public function Add( $more ) { $this->body .= $more; }
 
     public function AddCSS( $src ) { $this->css_files[] = $src; }
-    public function AddJava( $src ) { $this->js_files[] = $src; }
+    public function AddJava( $src, $head=false )
+    {
+        if ( $head ) $this->js_files_head[] = $src;
+        $this->js_files[] = $src;
+    }
 
     public function AddBootstrap()
     {
@@ -47,6 +52,12 @@ class HTMLPage
         foreach($this->css_files as $css_file)
         {
             $this->output .= '<link rel="stylesheet" href="' . $css_file . '">';
+        }
+
+        //js files head
+        foreach($this->js_files_head as $js_file_head)
+        {
+            $this->output .= '<script src="' . $js_file_head . '"></script>';
         }
 
         $this->output .= '</head>';

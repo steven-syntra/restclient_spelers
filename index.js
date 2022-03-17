@@ -1,8 +1,10 @@
 $( function() {
 
+    var mainURL = "http://localhost:8081/";
+
     //GET LIST OF PLAYERS
     $.ajax({
-        url: "http://localhost/restapi/spelers",       //welk script moet er antwoorden?
+        url: mainURL + "spelers",       //welk script moet er antwoorden?
         type: "GET",
         dataType: "json",                            //wat verwachten we terug?
         success: function( data  ) {                 //wat doen we bij succes?
@@ -21,7 +23,7 @@ $( function() {
         var naam = $('#naam').val();                        //haal de nieuwe naam uit het invoervak
 
         $.ajax({
-            url: "http://localhost/restapi/spelers",       //welk script moet er antwoorden?
+            url: mainURL + "spelers",       //welk script moet er antwoorden?
             type: "POST",
             data: { 'naam' : naam },                                //te verzenden data: { 'name1': 'value1', 'name2': 'value2', enz. }
             dataType: "json",                                           //wat verwachten we terug?
@@ -57,7 +59,7 @@ $( function() {
             var naam = $("#editInput").val();     //spelersnaam
 
             $.ajax({
-                url: "http://localhost/restapi/speler/" + id,       //welk script moet er antwoorden?
+                url: mainURL + "speler/" + id,       //welk script moet er antwoorden?
                 type: "PUT",
                 data: JSON.stringify({ 'naam' : naam }),                               //te verzenden data: { 'name1': 'value1', 'name2': 'value2', enz. }
                 dataType: "json",                                           //wat verwachten we terug?
@@ -80,7 +82,7 @@ $( function() {
         var id = $(this).attr("data-id");                        //haal de nieuwe naam uit het invoervak
 
         $.ajax({
-            url: "http://localhost/restapi/speler/" + id,       //welk script moet er antwoorden?
+            url: mainURL + "speler/" + id,       //welk script moet er antwoorden?
             type: "DELETE",
             dataType: "json",                                           //wat verwachten we terug?
             success: function( data  ) {                           //wat doen we bij succes?

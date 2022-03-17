@@ -3,7 +3,10 @@ require_once ("lib/HTMLPage.php");
 
 $page = new HTMLPage();
 $page->AddBootstrap();
-$page->AddJava('index.js');
+
+// axios insluiten
+$page->AddJava('https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js', $head=true);
+$page->AddJava('fetch_with_axios.js');
 
 $page->Add('<div class="container">');
 $page->Add('<br>');
